@@ -833,3 +833,44 @@
 </body>
 
 </html>
+
+
+<script>
+  const form = document.getElementById('contactForm');
+  const loading = form.querySelector('.loading');
+  const error = form.querySelector('.error-message');
+  const success = form.querySelector('.sent-message');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    loading.style.display = 'block';
+    error.style.display = 'none';
+    success.style.display = 'none';
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      loading.style.display = 'none';
+      if (response.ok) {
+        success.style.display = 'block';
+        form.reset();
+      } else {
+        response.json().then(data => {
+          error.textContent = data.error || 'Submission failed. Please try again.';
+          error.style.display = 'block';
+        });
+      }
+    })
+    .catch(() => {
+      loading.style.display = 'none';
+      error.textContent = 'There was a problem submitting the form.';
+      error.style.display = 'block';
+    });
+  });
+</script>
