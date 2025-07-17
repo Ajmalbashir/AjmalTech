@@ -770,8 +770,8 @@
 
     <div class="col-md-12 text-center">
       <div class="loading">Loading</div>
-      <div class="error-message"></div>
-      <div class="sent-message">Your message has been sent. Thank you!</div>
+      <div class="error-messages"></div>
+      <div class="sent-messages">Your message has been sent. Thank you!</div>
 
       <button type="submit">Send Message</button>
     </div>
@@ -838,8 +838,8 @@
 <script>
   const form = document.getElementById('contactForm');
   const loading = form.querySelector('.loading');
-  const error = form.querySelector('.error-message');
-  const success = form.querySelector('.sent-message');
+  const error = form.querySelector('.error-messages');
+  const success = form.querySelector('.sent-messages');
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
