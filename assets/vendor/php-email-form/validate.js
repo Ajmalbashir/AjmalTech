@@ -53,10 +53,7 @@
   fetch(action, {
     method: 'POST',
     body: formData,
-    headers: {
-      'Accept': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest'
-    }
+    headers: {'Accept': 'application/json'}
   })
   .then(response => {
     thisForm.querySelector('.loading').classList.remove('d-block');
@@ -65,12 +62,12 @@
       thisForm.reset();
     } else {
       return response.json().then(data => {
-        throw new Error(data.error || 'Form submission failed');
+        throw new Error(data.error || 'Form submission failed.');
       });
     }
   })
   .catch((error) => {
-    displayError(thisForm, error);
+    displayError(thisForm, error.message || error);
   });
 }
 
